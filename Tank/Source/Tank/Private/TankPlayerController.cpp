@@ -31,4 +31,18 @@ void ATankPlayerController::AimTowardsCrosshair()
 	{
 		return;
 	}
+
+	FVector HitLocation;
+	if (GetSightRayHitLocation(HitLocation))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
+	}
+}
+
+bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
+{
+	int32 ViewportSizeX, ViewportSizeY;
+	GetViewportSize(ViewportSizeX, ViewportSizeY);//这里得到的数字是屏幕实际分辨率乘以屏幕缩放比例后的值(pixel)
+	auto ScreenLocation = FVector2D(ViewportSizeX * CrosshairXLocation, ViewportSizeY * CrosshairYLocation);
+	return true;
 }

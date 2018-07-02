@@ -30,4 +30,13 @@ ATankPawn * ATankAIController::GetPlayerTank() const
 	return Cast<ATankPawn>(PlayerPawn);
 }
 
+void ATankAIController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	if (GetPlayerTank())
+	{
+		GetControllerTank()->AimAt(GetPlayerTank()->GetActorLocation());
+	}
+}
+
 

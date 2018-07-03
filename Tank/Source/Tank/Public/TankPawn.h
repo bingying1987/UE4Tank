@@ -18,14 +18,15 @@ protected:
 public:
 	// Sets default values for this pawn's properties
 	ATankPawn();
-
+	UFUNCTION(BlueprintCallable,Category = Setup)
+	void SetBarrelRefrence(UStaticMeshComponent* BarrelToSet);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 public:	
 	// Called every frame
-	
+	virtual void Tick(float DeltaSeconds) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

@@ -19,7 +19,10 @@ void ATankPawn::BeginPlay()
 }
 
 // Called every frame
-
+void ATankPawn::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+}
 
 // Called to bind functionality to input
 void ATankPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -31,4 +34,9 @@ void ATankPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ATankPawn::AimAt(FVector HitLocation)
 {
 	TankAimingComponent->AimAt(HitLocation);
+}
+
+void ATankPawn::SetBarrelRefrence(UStaticMeshComponent* BarrelToSet)
+{
+	TankAimingComponent->SetBarrelRefrence(BarrelToSet);
 }

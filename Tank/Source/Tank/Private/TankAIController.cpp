@@ -9,6 +9,7 @@ ATankPawn * ATankAIController::GetControllerTank() const
 
 void ATankAIController::BeginPlay()
 {
+	Super::BeginPlay();
 	auto PlayTank = GetPlayerTank();
 	if (!PlayTank)
 	{

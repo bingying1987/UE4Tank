@@ -6,7 +6,8 @@
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
-
+class UTankBarrel;
+class UTankTurret;
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TANK_API UTankAimingComponent : public UActorComponent
 {
@@ -15,16 +16,14 @@ class TANK_API UTankAimingComponent : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UTankAimingComponent();
-
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
 private:
-	UStaticMeshComponent* Barrel = nullptr;
+	UTankBarrel *Barrel = nullptr;
+	UTankTurret *Turret = nullptr;
 public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void AimAt(FVector HitLocation);
-	void SetBarrelRefrence(UStaticMeshComponent* BarrelToSet);
+
+	void AimAt(FVector HitLocation, float Speed);
+	void SetBarrelRefrence(UTankBarrel* BarrelToSet);
+	void SetTurretRefrence(UTankTurret* TurretToSet);
+	void MoveBarrelTowards(FVector AimDirection);
 };

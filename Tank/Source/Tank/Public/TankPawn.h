@@ -7,6 +7,8 @@
 #include "TankAimingComponent.h"
 #include "TankPawn.generated.h"
 
+class UTankBarrel;
+class UTankTurret;
 UCLASS()
 class TANK_API ATankPawn : public APawn
 {
@@ -19,7 +21,14 @@ public:
 	// Sets default values for this pawn's properties
 	ATankPawn();
 	UFUNCTION(BlueprintCallable,Category = Setup)
-	void SetBarrelRefrence(UStaticMeshComponent* BarrelToSet);
+	void SetBarrelRefrence(UTankBarrel* BarrelToSet);
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetTurretRefrence(UTankTurret* TurretToSet);
+	UPROPERTY(EditAnywhere, Category = Fire)
+	float FireSpeed = 4000.0f;//µ¥Î»ÀåÃ×
+
+	UFUNCTION(BlueprintCallable, Category = Firing)
+	void Fire();
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
